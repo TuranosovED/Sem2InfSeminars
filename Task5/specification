@@ -1,0 +1,2 @@
+lines.c - 1 задание, gcc lines.c -o lines
+main.c - 2 задание, gcc main.c calc.c -o main
