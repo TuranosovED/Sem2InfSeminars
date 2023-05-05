@@ -1,0 +1,2 @@
+1 - gcc ShellSort.c -o ShellSort
+2 - gcc lines.c -o lines
