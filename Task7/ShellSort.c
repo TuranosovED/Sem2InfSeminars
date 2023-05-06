@@ -1,27 +1,24 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include "SortStructs.h"
-
+#include "ShellSort.h"
 void print(arrayConfig *array)
 {
-    for(int i =0;i< array->count;i++)
+    for (int i = 0; i < array->count; i++)
     {
-        printf("%d ",array->mas[i]);
+        printf("%d ", array->mas[i]);
     }
     putchar('\n');
 }
 
-void InsertSort(arrayConfig *array,int length,int start)
+void InsertSort(arrayConfig *array, int length, int start)
 {
     int buffer;
-    for(int i =start + length;i<array->count;i+=length)
+    for (int i = start + length; i < array->count; i += length)
     {
         buffer = array->mas[i];
-        for(int j = i-length;j>=0;j-=length)
+        for (int j = i - length; j >= 0; j -= length)
         {
-            if(buffer<array->mas[j])
+            if (buffer < array->mas[j])
             {
-                array->mas[j+length] = array->mas[j];
+                array->mas[j + length] = array->mas[j];
                 array->mas[j] = buffer;
             }
         }
@@ -31,32 +28,29 @@ void InsertSort(arrayConfig *array,int length,int start)
 arrayConfig DataRead()
 {
     arrayConfig array;
-    scanf("%d",&(array.count));
-    array.mas = (int*)malloc(sizeof(int) * array.count);
-    
-    for(int i =0;i<array.count;i++)
-        scanf("%d",&(array.mas[i]));
+    puts("enter count of numbers");
+    scanf("%d", &(array.count));
+    array.mas = (int *)malloc(sizeof(int) * array.count);
+
+    for (int i = 0; i < array.count; i++)
+    {
+        puts("enter value: ");
+        scanf("%d", &(array.mas[i]));
+    }
+
     return array;
 }
 
 void ShellSort(arrayConfig *array)
 {
-    int length = array->count/2; //длина и количество групп
+    int length = array->count / 2; // длина и количество групп
 
-    if(array->count%2 != 0)
-        length++; 
-    while(length != 0) //условие окончания сортировки
+    if (array->count % 2 != 0)
+        length++;
+    while (length != 0) // условие окончания сортировки
     {
-        for(int start = 0;start<length;start++)//пробегаем все группы
-            InsertSort(array,length,start);
-        length/=2;
+        for (int start = 0; start < length; start++) // пробегаем все группы
+            InsertSort(array, length, start);
+        length /= 2;
     }
-}
-
-int main()
-{
-    arrayConfig array = DataRead();
-    ShellSort(&array);
-    print(&array);
-    return 0;
 }

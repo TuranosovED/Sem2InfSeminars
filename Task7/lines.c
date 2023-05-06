@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "lines.h"
 
 void Push(char **line,int size,char value)
 {
@@ -16,14 +15,9 @@ char* ReadStr()
     char* line = NULL;
     char c;
     int size =  0;
+    while((c = getchar())!='\n'); //очистка буфера
     while((c = getchar())!='\n')
         Push(&line,(size++),c);
     Push(&line,(size++),'\0');
     return(line);
-}
-
-int main()
-{
-    printf("%s",ReadStr());
-    return 0;
 }
