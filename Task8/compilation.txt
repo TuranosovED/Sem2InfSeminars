@@ -1,0 +1,1 @@
+gcc ShellStrSort.c lines.c main.c strend.c -o main
