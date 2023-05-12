@@ -1,0 +1,1 @@
+gcc BinarySearch.c FileRead.c CoutingSort.c Radix.c quicksort.c lines.c Stack.c Main.c Vector.c -o main
