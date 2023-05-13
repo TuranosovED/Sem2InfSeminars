@@ -19,7 +19,8 @@ int main()
     stack.size = 0;
 
     int index = 2; //макс разряд
-    array = ReadFile2();
+    array = ReadFile();
+
     puts("enter a:");
     int a = atoi(ReadStr());
     puts("enter b:");
@@ -40,7 +41,7 @@ int main()
     printf("result of search: index - %d\n",Search(array,0,array.count-1,key));
 
     free(array.mas);
-    array = ReadFile2();
+    array = ReadFile();
 
     puts("\narray:");
     print(&array);
@@ -54,7 +55,7 @@ int main()
     print(&array);
 
     free(array.mas);
-    array = ReadFile2();
+    array = ReadFile();
 
     puts("\narray:");
     print(&array);

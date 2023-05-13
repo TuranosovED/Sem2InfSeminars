@@ -4,4 +4,3 @@
 #include "SortStructs.h"
 #include "lines.h"
 arrayConfig ReadFile();
-arrayConfig ReadFile2();

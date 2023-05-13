@@ -1,29 +1,6 @@
 #include "FileRead.h"
 #include <string.h>
-arrayConfig ReadFile()  //считываем массив из файла
-{
-    int valueCount = 0; //кол-во элементов
-    int c; // значение из файла 
-    FILE *f = fopen("SortData.txt","r");
-
-    while(fscanf(f,"%d",&c) != EOF)
-        valueCount++;
-    fclose(f);
-    f = fopen("SortData.txt","r");
-    int *mas = malloc(sizeof(int) * valueCount);
-    int i=0;
-    while((fscanf(f,"%d",&c)) != EOF)
-    {
-        mas[i] = c;
-        i++;
-    }
-    fclose(f);
-    arrayConfig array = {mas,valueCount};
-    
-    return array;
-}
-//
-arrayConfig ReadFile2()
+arrayConfig ReadFile()
 {
     int valueCount = 0; //кол-во элементов
     FILE *f = fopen("SortData.txt","r");
@@ -48,6 +25,7 @@ arrayConfig ReadFile2()
         else if (c == '-')trigger = 1;
         else 
         {
+            PushLine(&buffer,buffer_size++,'\0');
             if(trigger)
                  mas[counter++] = atoi(buffer) * (-1);
             else mas[counter++] = atoi(buffer);
@@ -56,13 +34,12 @@ arrayConfig ReadFile2()
             buffer = NULL;
             buffer_size=0;
         } 
+
     }
     mas[counter++] = atoi(buffer);
     free(buffer);
-    
     fclose(f);
     arrayConfig array = {mas,valueCount};
     
     return array;
 }
-//
