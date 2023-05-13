@@ -1,5 +1,15 @@
 #include "CountingSort.h"
 
+int Min(arrayConfig *array)
+{
+    int min = 2147483647;
+    for(int i =0;i<array->count;i++)
+    {
+        if(array->mas[i] < min)min = array->mas[i];
+    }
+    return min;
+}
+
 int Max(arrayConfig *array)
 {
     int max = 0;
@@ -13,15 +23,27 @@ int Max(arrayConfig *array)
 void CountingSort(arrayConfig *array)
 {
     int maxValue = Max(array);
+    int minValue = Min(array);
     arrayConfig buffer;
     buffer.count = 0;
     buffer.mas = NULL;
-    int *additionalArray = calloc(maxValue+1,sizeof(int));
+    int *additionalArrayPositive = calloc(maxValue+1,sizeof(int));
+    int *additionalArrayNegative = calloc((minValue+1)*(-1),sizeof(int));
     for(int i = 0 ; i < (array->count) ; i++)
-        additionalArray[array->mas[i]]++;
+    {
+        if(array->mas[i] >= 0)additionalArrayPositive[array->mas[i]]++;
+        else additionalArrayNegative[(array->mas[i]) * (-1)]++;
+    }
 
+    for(int i = (minValue * (-1)) ; i > 0; i--)
+        for(int j =0;j<additionalArrayNegative[i];j++)
+            {
+                VectorPush(&buffer.mas,buffer.count, i*(-1));
+                buffer.count++;
+            }
+    
     for(int i =0 ; i < (maxValue+1) ; i++)
-        for(int j =0;j<additionalArray[i];j++)
+        for(int j =0;j<additionalArrayPositive[i];j++)
             {
                 VectorPush(&buffer.mas,buffer.count, i);
                 buffer.count++;

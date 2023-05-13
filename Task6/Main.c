@@ -13,15 +13,17 @@
 int main()
 {
     arrayConfig array; //сортируемый список
-
+    
     Stack stack; //стэк
     stack.array = NULL;
     stack.size = 0;
 
     int index = 2; //макс разряд
-    array = ReadFile();
-    int a = 5;
-    int b = 15;
+    array = ReadFile2();
+    puts("enter a:");
+    int a = atoi(ReadStr());
+    puts("enter b:");
+    int b = atoi(ReadStr());
     
     printf("\nbefore swap a - %d b - %d\n",a,b);
     swap(a,b,int);
@@ -32,13 +34,13 @@ int main()
     quicksort(&array,&stack);
     puts("result qs:");
     print(&array);
-
+    
     puts("\nenter key for binary search: ");
     int key = atoi(ReadStr());
     printf("result of search: index - %d\n",Search(array,0,array.count-1,key));
 
     free(array.mas);
-    array = ReadFile();
+    array = ReadFile2();
 
     puts("\narray:");
     print(&array);
@@ -47,12 +49,12 @@ int main()
     {
         fragmentation(&array,i+1);//radix;
     }
-
+    
     puts("result radix:");
     print(&array);
 
     free(array.mas);
-    array = ReadFile();
+    array = ReadFile2();
 
     puts("\narray:");
     print(&array);
